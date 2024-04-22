@@ -24,11 +24,13 @@ function App() {
 
   return (
     <>
-      <Navbar />
+      {/* <Navbar />
       <Page1 />
       <Count />
       <Scroll />
-      <Login />
+      <Login /> */}
+      <Days />
+
     </>
   )
 }
