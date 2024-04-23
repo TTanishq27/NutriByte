@@ -62,7 +62,7 @@ function calculator() {
   const arr = ["weight gain ", "weight maintaining ", "weight loss ", "extreme weight loss "];
 
   return (
-    <motion.div initial={{opacity: 0, x:"100%"}} animate={{opacity: 1, x:0}} transition={{duration: 2, ease: [0.85, 0, 0.15, 1]}} className='flex flex-col items-center gap-10 bg-[#ffffff90] backdrop-blur p-4 rounded-xl md:h-screen w-screen'>
+    <motion.div initial={{opacity: 0, x:100}} animate={{opacity: 1, x:0}} transition={{duration: .5, ease: [0.85, 0, 0.15, 1]}} className='flex flex-col items-center gap-10 p-4 rounded-xl md:h-screen backdrop-blur-lg w-fit mt-24'>
       <h1 className='text-4xl font-medium'>Calorie Calculator</h1>
       <form className='flex md:flex-row md:gap-24 relative gap-8 flex-col'>
         <div className="flex flex-col gap-4">

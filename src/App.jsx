@@ -10,6 +10,7 @@ import Test from './components/test'
 import API from './components/API'
 import Pop from './components/poplogin'
 import Calculator from './components/calculator'
+import MealForm from './components/mealForm'
 
 function App() {
 
@@ -24,13 +25,11 @@ function App() {
 
   return (
     <>
-      {/* <Navbar />
+      <Navbar />
       <Page1 />
       <Count />
       <Scroll />
-      <Login /> */}
-      <Days />
-
+      <Login />
     </>
   )
 }

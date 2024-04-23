@@ -3,9 +3,8 @@ import CountUp from 'react-countup';
 import { AnimatePresence, motion, useInView } from 'framer-motion'
 
 const Numbers = ({ num, name, s }) => {
-    const ref = React.useRef(null);
+    const ref = useRef(null);
     const isInView = useInView(ref);
-    console.log(isInView);
     return (
         <div className="flex flex-col items-center justify-center gap-4 p-12 font-sans">
             <div ref={ref}>

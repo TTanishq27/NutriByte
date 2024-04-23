@@ -2,13 +2,6 @@ import React from 'react'
 import '../App.css';
 import { motion } from 'framer-motion'
 
-const scrollBottom = () => {
-  window.scrollTo({
-    top: document.body.scrollHeight,
-    behavior: 'smooth',
-  });
-};
-
 function page1() {
 
   return (
@@ -17,7 +10,7 @@ function page1() {
       <motion.div className="flex flex-col gap-8 w-1/3">
         <h1 className='text-5xl font-bold'>Unlock the Power of Healthy Eating</h1>
         <h2 className='text-xl'>Tailored Meal Plans for Your Unique Nutritional Needs. Calculate your nutritional needs and generate custom diet plans for weight loss, bodybuilding and much more!</h2>
-        <button className='border-none outline-none uppercase bg-[#1c6758] text-white w-fit px-8 py-5 font-semibold text-xl rounded-full hover:bg-orange-500' id='this' onClick={scrollBottom}>Plan Your Diet<span><i class="fa-solid fa-arrow-right"></i></span>
+        <button className='border-none outline-none uppercase bg-[#1c6758] text-white w-fit px-8 py-5 font-semibold text-xl rounded-full hover:bg-orange-500' id='this'>Plan Your Diet<span><i class="fa-solid fa-arrow-right"></i></span>
         </button>
       </motion.div>
       <div className="right">

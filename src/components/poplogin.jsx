@@ -6,7 +6,7 @@ function poplogin({setForm}) {
   return (
     <motion.form 
       exit={{opacity: 0, y: 100}}
-      initial={{opacity: 0, y:100}} animate={{opacity: 1, y:0}} transition={{duration: .5}} className='w-full z-50 p-4 bg-[#12372add] backdrop-blur-md rounded-xl flex flex-col gap-4 fixed bottom-0' style={{boxShadow: "0 0 10px #000"}}>
+      initial={{opacity: 0, y:100}} animate={{opacity: 1, y:0}} transition={{duration: .5, ease: [0.85, 0, 0.15, 1]}} className='w-1/2 z-50 p-4 bg-[#12372add] backdrop-blur-md rounded-xl flex flex-col gap-4 fixed bottom-0' style={{boxShadow: "0 0 10px #000"}}>
       <div className="flex items-center justify-between">
         <h1 className='text-base font-medium text-center bg-[#fbfada] rounded-full py-2 px-4 w-fit'>Sign Up</h1>
         <i 

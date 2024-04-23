@@ -39,9 +39,9 @@ const Card = ({ card }) => {
         }}
         className="pic absolute inset-0 z-0 transition-all shadow-black duration-300 hover:scale-110 hover:brightness-[.6]"
       ></div>
-      <div className="absolute text-justify top-8 px-8">
+      {/* <div className="absolute text-justify top-8 px-8">
         <p className="text-lg text-white font-medium cursor-default">{card.para}</p>
-      </div>
+      </div> */}
     </div>
   );
 };
