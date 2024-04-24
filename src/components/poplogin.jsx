@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import { motion } from 'framer-motion'
 
 function poplogin({setForm}) {
-
   return (
     <motion.form 
       exit={{opacity: 0, y: 100}}
