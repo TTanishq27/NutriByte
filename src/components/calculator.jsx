@@ -2,7 +2,7 @@ import React from 'react';
 import { useState } from 'react';
 import {motion} from 'framer-motion';
 
-function calculator({state, setState}) {
+function calculator({setState}) {
   const [weight, setWeight] = useState(40);
   const [height, setHeight] = useState(152);
   const [age, setAge] = useState(15);
@@ -67,7 +67,7 @@ function calculator({state, setState}) {
     initial={{opacity: 0, x:100}} animate={{opacity: 1, x:0}} transition={{duration: .5, ease: [0.85, 0, 0.15, 1]}} className='flex fixed z-50 flex-col items-center gap-10 p-4 rounded-xl md:h-screen backdrop-blur-lg w-screen top-0 left-0 bg-[#fbfada8e]'>
       <i 
         onClick={() => {
-            setState(!state)
+            setState(false)
         }}
       className='fa-solid fa-arrow-left fixed top-2 left-2 font-extrabold bg-[#12372a] text-[#fbfada] px-10 py-4 rounded-full '> Back</i>
       <h1 className='text-4xl font-medium'>Calorie Calculator</h1>

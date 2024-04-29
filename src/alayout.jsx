@@ -11,17 +11,17 @@ import API from './components/API'
 import Pop from './components/poplogin'
 import Calculator from './components/calculator'
 import MealForm from './components/mealForm'
+import Recipe from './components/Recipe'
 import { Outlet } from 'react-router-dom'
+
 
 function layout() {
     return (
-        <div>
+        <>
             <Navbar />
-            <Page1 />
-            <Count />
-            <Scroll />
-            <Login />
-        </div>
+            <Outlet/>
+        </>
+        
     )
 }
 

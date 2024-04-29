@@ -1,23 +1,40 @@
-import React from 'react';
-import axios from 'axios';
-import JSONData from "./something.json";
-// import {getFoodItems} from "../components/something"
+import React, { useState, useEffect } from 'react';
 
-function API() {
-    
-    
-    const input_ref = React.useRef(null);
-    const handleSubmit = async () => {
-        const state = input_ref.current.value;
-        const something = await axios.get(`http://localhost:8000/${state}`);
-        console.log(something.data[0]);
-    }
-    return (
+function API({inputText}) {
+  const [data, setData] = useState(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      var query = 'pasta'
+      try {
+        const response = await fetch(`https://api.calorieninjas.com/v1/nutrition?query=${query}`, {
+          headers: {
+            'X-Api-Key': 'vUoq5AUZObTtwVcr9H3ljA==3ctcsriSz64KOM4q'
+          }
+        });
+        const jsonData = await response.json();
+        setData(jsonData);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  return (
+    <div>
+      <h1>API Data</h1>
+      {data ? (
         <div>
-            <input ref={input_ref}/>
-            <button onClick={handleSubmit}>Submit</button>
+          <p>Data fetched successfully:</p>
+          <pre>{JSON.stringify(data, null, 2)}</pre>
         </div>
-    );
+      ) : (
+        <p>Loading...</p>
+      )}
+    </div>
+  );
 }
 
 export default API;

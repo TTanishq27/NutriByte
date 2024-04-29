@@ -11,7 +11,7 @@ const scroll = () => {
   const x = useTransform(scrollYProgress, [0, 1], ["10%", "-55%"]);
 
   return (
-    <section ref={targetRef} className="relative h-[600vh] z-10 bg-[#fbfada]">
+    <section ref={targetRef} className="relative h-[600vh] z-20 bg-[#fbfada]">
       <h1 className="text-center text-8xl sticky top-0 h-screen text-[#12372a] pt-4">Success Stories</h1>
       <div className="sticky top-0 flex h-screen items-center overflow-hidden">
         <motion.div style={{ x }} className="flex gap-8">

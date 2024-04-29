@@ -4,7 +4,7 @@ import Test from "./test";
 
 const tabs = ["Day 1", "Day 2", "Day 3", "Day 4", "Day 5", "Day 6", "Day 7"];
 
-const days = () => {
+const Days = () => {
   const [selected, setSelected] = useState(tabs[0]);
 
   const foodItems = [
@@ -296,4 +296,4 @@ const Chip = ({ text, selected, setSelected, }) => {
   );
 };
 
-export default days;
+export default Days;
