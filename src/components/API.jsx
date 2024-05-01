@@ -11,7 +11,7 @@ function API({inputText}) {
           headers: {
             'X-Api-Key': 'vUoq5AUZObTtwVcr9H3ljA==3ctcsriSz64KOM4q'
           }
-        });
+        }); 
         const jsonData = await response.json();
         setData(jsonData);
       } catch (error) {

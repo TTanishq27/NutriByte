@@ -14,7 +14,7 @@ function login() {
     }
     const user_credentials = {
       username: localStorage.getItem("username"),
-      password: localStorage.getItem("password")
+      password: localStorage.getItem("password") 
     }
     if(user_credentials.username === username_ref.current.value && user_credentials.password === password_ref.current.value) {
       window.location.assign("/mealForm")

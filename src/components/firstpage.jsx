@@ -7,12 +7,13 @@ import Login from './login'
 function firstpage() {
   return (
     <div>
-        <Page1 />
+        <Page1 /> 
         <Count />
         <Scroll />
         <Login />
     </div>
   )
 }
+
 
 export default firstpage

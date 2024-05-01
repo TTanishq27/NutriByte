@@ -6,8 +6,11 @@ import Pop from "./poplogin";
 import Calculator from "./calculator";
 import { AnimatePresence, motion } from "framer-motion";
 import { Link, NavLink } from "react-router-dom";
+import { IoMenu } from "react-icons/io5";
 
 function navbar() {
+
+  const [Drop, setDrop] = useState(false);
 
   if(!localStorage.getItem("username")){
     localStorage.setItem("username", "Username")
@@ -37,12 +40,12 @@ function navbar() {
           initial={{ y: -100, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.5 }}
-          className="z-20 fixed w-full h-20 flex items-center justify-center gap-24 py-1 bg-[#eef2e6]"
+          className="z-20 fixed w-full h:10 md:h-20 flex items-center justify-center gap-24 py-1 bg-[#eef2e6]"
         >
           <NavLink to="/">
-            <img src={Logo} alt="" className="h-[4.5rem] rounded-md" />
+            <img src={Logo} alt="" className="h-[4.5rem] rounded-md w-full" />
           </NavLink>
-          <motion.ul className="md:flex hidden gap-24">
+          <motion.ul className="lg:flex hidden lg:gap-24 justify-around">
             <motion.li
               initial={{ y: -100, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
@@ -93,10 +96,20 @@ function navbar() {
               setClicked(true);
               if(!isClicked) setform(!form);
             }}
-            className="border-none outline-none bg-orange-500 text-white h-full px-8 rounded-full font-medium opacity-80 hover:opacity-100"
+            className="border-none outline-none bg-orange-500 text-white h-full px-8 text-sm rounded-full font-medium opacity-80 hover:opacity-100 hidden md:block"
           >
             {isClicked ? <span>{user}</span> : <span>Get Started</span>}
           </button>
+            
+            <div className="">
+              <IoMenu className="lg:hidden text-5xl relative" onClick={()=> setDrop(!Drop)}/>
+              {Drop && <ul className="bg-[#1c6758] text-[#fbfada] text-sm absolute right-5 rounded-lg top-20 w-36">
+                <li className="py-4 px-2">Meal Planner</li>
+                <li className="py-4 px-2">Get Recipe</li>
+                <li className="py-4 px-2">Calculator</li>
+                <li className="py-4 px-2">Get Started</li>
+              </ul>}
+            </div>
         </motion.nav>
       </div>
       <div className="flex justify-center items-center">
@@ -110,3 +123,5 @@ function navbar() {
 }
 
 export default navbar;
+
+

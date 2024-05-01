@@ -162,7 +162,7 @@ function Cart({ setBox }) {
               key={index}
               name={item.name}
               count={item.count}
-              removeCard={() => removeItem(item.name)} // <-- Pass removeCard function to OneCard
+              removeCard={() => removeItem(item.name)} 
             />
           )
         ))}
@@ -191,7 +191,7 @@ function OneCard({ img, name, removeCard }) {
       <img
         src="https://imgs.search.brave.com/MDJwyjaByFDJApqmr9zyVcIRz-POyna47PAXJCPdK-w/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5nZXR0eWltYWdl/cy5jb20vaWQvMTU2/OTA2NDYxMC92ZWN0/b3IvZHVzdGJpbi1y/ZWN5Y2xhYmxlLXJl/Y3ljbGluZy1saW5l/LWljb24uanBnP3M9/NjEyeDYxMiZ3PTAm/az0yMCZjPTBUU0Fo/ZE9tYURJbVZFMHAx/YTlzU1U0X3RRS24y/MjZkMTZMdm55YWpE/S2c9"
         alt=""
-        className="h-full w-20 aspect-square border-2 border-black rounded-lg bg-[#00000050] cursor-pointer"
+        className="h-full w-20 aspect-square border-2 border-black rounded-lg bg-[#00000050] cursor-pointer "
         onClick={removeCard} 
       />
       <h3 className="text-lg text-black font-medium capitalize">{name}</h3>
@@ -203,6 +203,8 @@ function OneCard({ img, name, removeCard }) {
     </div>
   );
 }
+
+
 
 
 

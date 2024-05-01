@@ -7,7 +7,7 @@ function calculator({setState}) {
   const [height, setHeight] = useState(152);
   const [age, setAge] = useState(15);
   const [gender, setGender] = useState('male');
-  const [activity, setActivity] = useState('moderate');
+  const [activity, setActivity] = useState('moderate'); 
   const [goal, setGoal] = useState('maintain');
   const [calories, setCalories] = useState(0);
   const [BMI, setBMI] = useState(0);
@@ -63,8 +63,8 @@ function calculator({setState}) {
 
   return (
     <motion.div 
-      exit={{opacity: 0, x: 100}}
-    initial={{opacity: 0, x:100}} animate={{opacity: 1, x:0}} transition={{duration: .5, ease: [0.85, 0, 0.15, 1]}} className='flex fixed z-50 flex-col items-center gap-10 p-4 rounded-xl md:h-screen backdrop-blur-lg w-screen top-0 left-0 bg-[#fbfada8e]'>
+      exit={{opacity: 0, x: 1000}}
+    initial={{opacity: 0, x:1000}} animate={{opacity: 1, x:0}} transition={{duration: 1, type: "spring", damping: 10}} className='flex fixed z-50 flex-col items-center gap-10 p-4 rounded-xl md:h-screen backdrop-blur-lg w-screen top-0 left-0 bg-[#fbfada8e]'>
       <i 
         onClick={() => {
             setState(false)

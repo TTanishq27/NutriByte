@@ -7,7 +7,7 @@ const Numbers = ({ num, name, s }) => {
     const isInView = useInView(ref);
     return (
         <div className="flex flex-col items-center justify-center gap-4 p-12 font-sans">
-            <div ref={ref}>
+            <div ref={ref}> 
                 {isInView && <CountUp 
                 duration={3} end={num} suffix={s} className='text-4xl font-medium text-[#FBFADA]' />}
             </div>

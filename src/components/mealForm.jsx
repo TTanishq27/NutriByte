@@ -187,7 +187,7 @@ const InputCard = ({ j }) => {
                 )}
               </div>
             </motion.div>
-          </AnimatePresence>
+          </AnimatePresence> 
         )}
       </div>
     </React.Fragment>

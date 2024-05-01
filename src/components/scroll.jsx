@@ -86,3 +86,4 @@ const cards = [
     para:"Lisa, a nurse, was always on her feet but didn't have time to exercise or eat healthy. She was insecure about her physique. But after following a healthy diet and working out, she lost 15 pounds. She feels happier and satisfied at work now."
   },
 ];
+
