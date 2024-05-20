@@ -8,13 +8,13 @@ const scroll = () => {
     target: targetRef,
   });
 
-  const x = useTransform(scrollYProgress, [0, 1], ["10%", "-55%"]);
+  const x = useTransform(scrollYProgress, [0, 1], ["50%", "-55%"]);
 
   return (
     <section ref={targetRef} className="relative h-[600vh] z-20 bg-[#fbfada]">
-      <h1 className="text-center text-8xl sticky top-0 h-screen text-[#12372a] pt-4">Success Stories</h1>
+      <h1 className="text-center text-8xl sticky top-0 text-[#12372a] pt-4">Success Stories</h1>
       <div className="sticky top-0 flex h-screen items-center overflow-hidden">
-        <motion.div style={{ x }} className="flex gap-8">
+        <motion.div style={{ x }} className="flex gap-8 bg-[#fbfada]">
           {cards.map((card) => {
             return <Card card={card} key={card.id} />;
           })}
@@ -39,9 +39,6 @@ const Card = ({ card }) => {
         }}
         className="pic absolute inset-0 z-0 transition-all shadow-black duration-300 hover:scale-110 hover:brightness-[.6]"
       ></div>
-      {/* <div className="absolute text-justify top-8 px-8">
-        <p className="text-lg text-white font-medium cursor-default">{card.para}</p>
-      </div> */}
     </div>
   );
 };
@@ -71,7 +68,7 @@ const cards = [
     para: "James, a construction worker, was always active but didn't pay attention to his diet. He was unsatisfied with his appearance. But after following a healthy diet and exercising regularly, He feels more energetic and stronger at work."
   },
   {
-    url: "https://www.shutterstock.com/image-photo/real-photo-woman-before-after-600nw-1407576821.jpg",
+    url: "https://static.vecteezy.com/system/resources/previews/040/338/694/non_2x/ai-generated-woman-in-shorts-shows-toned-legs-after-weight-loss-transformation-photo.jpg",
     id: 5,
     para: "Sarah, a mother of two, was struggling with her weight after giving birth to her second child. She decided to take control of her health and started eating healthy and working out. She lost 20 pounds and gained muscle mass. She feels stronger and happier than ever before."
   },
@@ -81,7 +78,7 @@ const cards = [
     para: "Alice, an online influencer was underweight and was not satisfied about her eating habits. She started weight gaining diet and after just 4 weeks she gained over 8kgs and gave her a confidnce boost. Now she is an onlyfans model."
   },
   {
-    url: "https://3f76ee1ce067134369ef-f23b5995d77526a95a1605453309cdf1.ssl.cf1.rackcdn.com/events/photos/426/60cf6fd2a0034.png",
+    url: "https://womenshealth.com.au/wp-content/uploads/2022/10/wh-transformation-square-1549667036.jpg",
     id: 7,
     para:"Lisa, a nurse, was always on her feet but didn't have time to exercise or eat healthy. She was insecure about her physique. But after following a healthy diet and working out, she lost 15 pounds. She feels happier and satisfied at work now."
   },

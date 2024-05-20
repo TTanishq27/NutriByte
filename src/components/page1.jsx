@@ -1,7 +1,7 @@
 import React from 'react'
 import '../App.css';
 import { motion } from 'framer-motion'
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 function page1() {
 

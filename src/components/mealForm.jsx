@@ -1,41 +1,82 @@
 import React, { useState, useEffect } from "react";
-import Test from "../components/test";
-import API from "../components/API";
 import { AnimatePresence, motion } from "framer-motion";
-import { CiLocationArrow1, CiStar } from "react-icons/ci";
+import { CiLocationArrow1 } from "react-icons/ci";
 import { FaArrowRight } from "react-icons/fa";
+import { getDatabase, ref, set } from "firebase/database";
+import { initializeApp } from "firebase/app";
 
-const Front = ({ days, meals, inputText }) => {
+// Firebase configuration
+const firebaseConfig = {
+  apiKey: "AIzaSyCu8kaD1TTMxAntdvGeiLPibPtJiVOth6U",
+  authDomain: "tanishq-final-fee.firebaseapp.com",
+  databaseURL: "https://tanishq-final-fee-default-rtdb.firebaseio.com",
+  projectId: "tanishq-final-fee",
+  storageBucket: "tanishq-final-fee.appspot.com",
+  messagingSenderId: "1001244988298",
+  appId: "1:1001244988298:web:729b1bb97d858dc07a6e73",
+};
+
+const app = initializeApp(firebaseConfig);
+const database = getDatabase(app);
+
+const Front = ({ days, meals, username }) => {
+  const [inputs, setInputs] = useState(
+    Array.from({ length: days }, () => Array(meals).fill(""))
+  );
+
+  const handleInputChange = (dayIndex, mealIndex, value) => {
+    const newInputs = inputs.map((day, i) =>
+      day.map((meal, j) => (i === dayIndex && j === mealIndex ? value : meal))
+    );
+    setInputs(newInputs);
+  };
+
+  const handleSave = () => {
+    const db = getDatabase();
+    set(ref(db, `users/${username}/mealPlanner/`), {
+      days: inputs,
+    });
+    alert("Your meal plan is successfully saved");
+  };
+
   return (
-      <div className="flex flex-wrap gap-4 justify-center mb-4">
-        {Array.from({ length: days }, (_, i) => (
-          <div
-            key={i}
-            className={`flex gap-4 bg-[#1C6758] rounded-xl p-4 max-w-96 justify-center`}
-          >
-            <label className="flex flex-col gap-4 items-center">
-              <div className="flex justify-between w-full">
-                <h2 className="text-2xl font-medium text-[#fbfada] ">
-                  Day {i + 1}:
-                </h2>
-              </div>
-              {Array.from({ length: meals }, (_, j) => (
-                <InputCard key={j} j={j} />
-              ))}
-            </label>
-          </div>
-        ))}
-      </div>
+    <div className="flex flex-wrap gap-4 justify-center mb-4">
+      {Array.from({ length: days }, (_, i) => (
+        <div
+          key={i}
+          className="flex gap-4 bg-[#1C6758] rounded-xl p-4 max-w-96 justify-center"
+        >
+          <label className="flex flex-col gap-4 items-center">
+            <div className="flex justify-between w-full">
+              <h2 className="text-2xl font-medium text-[#fbfada]">
+                Day {i + 1}:
+              </h2>
+            </div>
+            {Array.from({ length: meals }, (_, j) => (
+              <InputCard
+                key={j}
+                j={j}
+                dayIndex={i}
+                mealIndex={j}
+                value={inputs[i][j]}
+                onInputChange={handleInputChange}
+              />
+            ))}
+          </label>
+        </div>
+      ))}
+      <button onClick={handleSave} className="bg-orange-400 hover:bg-orange-500 h-full w-full text-white py-5 text-xl font-medium uppercase">Save</button>
+    </div>
   );
 };
 
-const InputCard = ({ j }) => {
-  const [inputText, setInputText] = React.useState("");
-  const [isButton, setButton] = React.useState(false);
-  const [box, setBox] = React.useState(false);
+const InputCard = ({ j, dayIndex, mealIndex, value, onInputChange }) => {
+  const [inputText, setInputText] = useState(value);
+  const [isButton, setButton] = useState(false);
+  const [box, setBox] = useState(false);
   const [nutrition, setNutrition] = useState(null);
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (!inputText) setButton(false);
     else setButton(true);
   }, [inputText]);
@@ -61,14 +102,18 @@ const InputCard = ({ j }) => {
     <React.Fragment>
       <div
         key={j}
-        className={`bg-[#eef2e6] rounded-lg relative overflow-hidden p-2 w-full`}
+        className="bg-[#eef2e6] rounded-lg relative overflow-hidden p-2 w-full"
       >
         <label>
           <h4 className="text-lg">Meal {j + 1}:</h4>
         </label>
         <input
           type="text"
-          onChange={(e) => setInputText(e.target.value)}
+          value={inputText}
+          onChange={(e) => {
+            setInputText(e.target.value);
+            onInputChange(dayIndex, mealIndex, e.target.value);
+          }}
           className="w-full border-none outline-none p-2 text-xl text-orange-500 bg-transparent font-semibold uppercase"
         />
         <AnimatePresence>
@@ -76,7 +121,9 @@ const InputCard = ({ j }) => {
             <motion.button
               onClick={() => {
                 setBox(true);
-                handleSearch(inputText).then((jsonData) => setNutrition(jsonData));
+                handleSearch(inputText).then((jsonData) =>
+                  setNutrition(jsonData)
+                );
               }}
               animate={{ x: 0 }}
               initial={{ x: 100 }}
@@ -95,11 +142,11 @@ const InputCard = ({ j }) => {
               exit={{ opacity: 0, x: "100%" }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 1, ease: [0.85, 0, 0.15, 1] }}
-              className="fixed w-screen h-full rounded-2xl z-30 p-4 bg-[#fbfadadd] backdrop-blur-sm border-[3px] border-[#12372a] top-0 right-0 overflow-scroll"
+              className="fixed w-screen h-full rounded-2xl z-30 p-4 bg-[#fbfadaee] backdrop-blur-sm border-[3px] border-[#12372a] top-0 right-0 overflow-scroll"
             >
-              <div className="flex justify-between">
+              <div className="flex justify-around">
                 <FaArrowRight
-                  className="p-2 bg-[#1c6758] text-[2.5rem] rounded-full text-[#fbfada] cursor-pointer"
+                  className="p-2 w-10 h-10 bg-[#1c6758] text-[2rem] rounded-full text-[#fbfada] cursor-pointer"
                   onClick={() => {
                     setBox(false);
                   }}
@@ -111,17 +158,14 @@ const InputCard = ({ j }) => {
                     {inputText} {"}"}
                   </span>
                 </h1>
-                <CiStar className="text-[2rem] text-black cursor-pointer hover:scale-125 transition-all" />
               </div>
               <div className="flex gap-4 justify-center flex-wrap rounded-2xl">
-                {nutrition &&
-                nutrition.items &&
-                nutrition.items.length > 0 ? (
+                {nutrition && nutrition.items && nutrition.items.length > 0 ? (
                   nutrition.items.map((item, index) => (
                     <div
                       key={index}
                       style={{ boxShadow: "4px 4px 1px #333" }}
-                      className="flex flex-col gap-4 min-w-80 rounded-2xl bg-white border-[3px] border-[#12372a] p-4"
+                      className="flex flex-col gap-4 max-w-80 rounded-2xl bg-white border-[3px] border-[#12372a] p-4"
                     >
                       <h2 className="text-xl font-medium underline underline-offset-4">
                         Nutrition Content{" "}
@@ -187,7 +231,7 @@ const InputCard = ({ j }) => {
                 )}
               </div>
             </motion.div>
-          </AnimatePresence> 
+          </AnimatePresence>
         )}
       </div>
     </React.Fragment>
@@ -198,10 +242,23 @@ const MealForm = () => {
   const [days, setDays] = useState(2);
   const [meals, setMeals] = useState(2);
   const [display, setDisplay] = useState(false);
+  const username = localStorage.getItem("username");
 
   return (
-    <motion.div initial={{opacity: 0, y:100}} animate={{opacity: 1, y:0}} transition={{duration: 1, type: "spring", damping: 10}} className="relative top-24">
-      <h1 className="text-5xl font-semibold text-center mb-10">Meal Planner</h1>
+    <motion.div
+      initial={{ opacity: 0, y: 100 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 1, type: "spring", damping: 10 }}
+      className="relative top-24"
+    >
+      <h1 className="text-5xl font-semibold text-center mb-10">
+        Meal Planner{" "}
+        <span className="text-lg font-medium">
+        (Target Calories: {localStorage.getItem("totalCalories") !== null
+            ? `${localStorage.getItem("totalCalories")} cal`
+            : "Use Calculator"})
+        </span>
+      </h1>
       <div className="flex flex-col p-4 gap-10 items-center ">
         <div className="flex flex-col gap-1 bg-[#1c6758] p-4 rounded-2xl md:w-[30rem] w-[20rem]">
           <label className="text-lg font-medium text-left text-[#eef2e6]">
@@ -239,7 +296,7 @@ const MealForm = () => {
           Plan your meals in advance
         </h1>
       </div>
-      {display && <Front days={days} meals={meals} />}
+      {display && <Front days={days} meals={meals} username={username} />}
     </motion.div>
   );
 };

@@ -1,9 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import App from "./App.jsx";
 import Layout from "../src/alayout.jsx";
-import Login from "./components/login.jsx";
-import Calculator from "./components/calculator.jsx";
 import {
   BrowserRouter as BS,
   Routes,
@@ -12,7 +9,6 @@ import {
   createRoutesFromElements,
   RouterProvider,
 } from "react-router-dom";
-import Days from "./components/days.jsx";
 import MealForm from "./components/mealForm.jsx";
 import Recipe from "./components/Recipe.jsx";
 import Navbar from "./components/navbar.jsx";

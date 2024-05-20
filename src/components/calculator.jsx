@@ -57,6 +57,7 @@ function calculator({setState}) {
     }
 
     setCalories(Math.round(totalCalories));
+    localStorage.setItem('totalCalories', totalCalories);
   };
 
   const arr = ["weight gain ", "weight maintaining ", "weight loss ", "extreme weight loss "];
@@ -64,7 +65,7 @@ function calculator({setState}) {
   return (
     <motion.div 
       exit={{opacity: 0, x: 1000}}
-    initial={{opacity: 0, x:1000}} animate={{opacity: 1, x:0}} transition={{duration: 1, type: "spring", damping: 10}} className='flex fixed z-50 flex-col items-center gap-10 p-4 rounded-xl md:h-screen backdrop-blur-lg w-screen top-0 left-0 bg-[#fbfada8e]'>
+    initial={{opacity: 0, x:1000}} animate={{opacity: 1, x:0}} transition={{duration: 1, type: "spring", damping: 10}} className='flex fixed z-50 flex-col items-center gap-10 p-4 rounded-xl md:h-screen backdrop-blur-lg w-screen top-0 left-0 bg-[#fbfadabb] border-2 border-black'>
       <i 
         onClick={() => {
             setState(false)
